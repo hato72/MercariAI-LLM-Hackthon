@@ -1,4 +1,5 @@
 // components/footer.tsx
+import Link from 'next/link'
 import { Home, Users, PlusCircle, Bell as BellIcon, UserCircle } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
