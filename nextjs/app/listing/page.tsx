@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 export default function ListingScreen() {
   return (
     <div className="bg-white flex flex-col h-full w-full overflow-x-hidden">
-      <div className="flex-1 px-4 py-2 flex flex-col">
+      <div className="flex-1 py-2 flex flex-col">
         <div className="flex-1 flex items-center justify-center">
           <h1 className="text-3xl font-semibold">出品</h1>
         </div>
