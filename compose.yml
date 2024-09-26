@@ -7,3 +7,9 @@ services:
     volumes:
       - ./nextjs:/nextjs
     command: npm run dev
+    networks:
+      - mercari-app-network
+
+networks:
+  mercari-app-network:
+    driver: bridge
