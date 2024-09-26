@@ -1,44 +1,54 @@
 // components/footer.tsx
 import Link from 'next/link'
 import { Home, Users, PlusCircle, Bell as BellIcon, UserCircle } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-white py-4 border-t text-center z-50">
-      <div className="container mx-auto">
-        <nav className="flex justify-between items-center">
+    <>
+      
+      {/* ボトムナビゲーション */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 px-4">
+        <ul className="flex justify-between items-center">
+          <li>
           <Link href="/home">
-            <div className="flex flex-col items-center">
+            <Button variant="ghost" className="flex flex-col items-center h-auto p-0">
               <Home size={24} className="text-gray-600" />
               <span className="text-xs mt-1">ホーム</span>
-            </div>
+            </Button>
           </Link>
-          <Link href="/community">  {/* コミュニティページに遷移するリンク */}
-            <div className="flex flex-col items-center">
+          </li>
+          <li>
+            <Link href="/community">
+            <Button variant="ghost" className="flex flex-col items-center h-auto p-0">
               <Users size={24} className="text-gray-600" />
               <span className="text-xs mt-1">コミュニティ</span>
-            </div>
-          </Link>
-          <Link href="/home">
-            <div className="flex flex-col items-center">
+            </Button>
+            </Link>
+          </li>
+          <li>
+            <Link href="/listing">
+            <Button variant="ghost" className="flex flex-col items-center h-auto p-0">
               <PlusCircle size={40} className="text-red-500 -mt-5" />
               <span className="text-xs mt-1">出品</span>
-            </div>
-          </Link>
-          <Link href="/home">
-            <div className="flex flex-col items-center">
+            </Button>
+            </Link>
+          </li>
+          <li>
+            <Button variant="ghost" className="flex flex-col items-center h-auto p-0">
               <BellIcon size={24} className="text-gray-600" />
               <span className="text-xs mt-1">お知らせ</span>
-            </div>
-          </Link>
-          <Link href="/home">
-            <div className="flex flex-col items-center">
+            </Button>
+          </li>
+          <li>
+            <Button variant="ghost" className="flex flex-col items-center h-auto p-0">
               <UserCircle size={24} className="text-gray-600" />
               <span className="text-xs mt-1">マイページ</span>
-            </div>
-          </Link>
-        </nav>
-      </div>
-    </footer>
+            </Button>
+          </li>
+        </ul>
+      </nav>
+    </>
   )
 }
