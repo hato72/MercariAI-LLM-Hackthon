@@ -1,11 +1,12 @@
-
-import { Button } from "@/components/ui/button"
+// pages/mercari-clone.tsx
+import { Button } from "@/components/ui/button";
+import { productData } from "./productData";
 
 export default function MercariClone() {
   return (
     <>
       {/* カテゴリーセクション */}
-      <section className="mb-8">
+      <section className="mb-8 pt-16"> {/* ヘッダーの高さ分の余白を追加 */}
         <h2 className="text-xl font-semibold mb-4">カテゴリーから探す</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {['レディース', 'メンズ', 'キッズ', 'インテリア・住まい', 'エンタメ', '本・音楽・ゲーム'].map((category) => (
@@ -18,12 +19,16 @@ export default function MercariClone() {
       <section>
         <h2 className="text-xl font-semibold mb-4">おすすめの商品</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="bg-white rounded-lg shadow overflow-hidden">
-              <img src={`/placeholder.svg?height=150&width=150`} alt="Product" className="w-full h-40 object-cover" />
+          {productData.map((product) => (
+            <div key={product.id} className="bg-white rounded-lg shadow overflow-hidden">
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="w-full h-40 object-cover"
+              />
               <div className="p-2">
-                <p className="text-sm truncate">商品名 {i + 1}</p>
-                <p className="text-sm font-bold">¥{(Math.random() * 10000).toFixed(0)}</p>
+                <p className="text-sm truncate">{product.name}</p>
+                <p className="text-sm font-bold">¥{product.price.toLocaleString()}</p>
               </div>
             </div>
           ))}
@@ -37,5 +42,5 @@ export default function MercariClone() {
         </svg>
       </Button>
     </>
-  )
+  );
 }

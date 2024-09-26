@@ -76,3 +76,24 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* スマホ（幅767px以下）ではスクロールを無効にする */
+/* スマホ（幅767px以下）で横スクロールを無効にし、縦スクロールは許可 */
+@media (max-width: 767px) {
+  header {
+    margin-bottom: 16px;
+  }
+  /* footer {
+    margin-top: 16px;
+  } */
+
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* 縦スクロールを許可 */
+    touch-action: pan-y;
+    /* 縦方向のスクロールのみを有効に */
+    margin-bottom: 35px;
+  }
+}
