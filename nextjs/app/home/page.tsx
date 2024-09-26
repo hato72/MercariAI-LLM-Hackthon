@@ -6,7 +6,7 @@ export default function MercariClone() {
   return (
     <>
       {/* カテゴリーセクション */}
-      <section className="mb-8 pt-16"> {/* ヘッダーの高さ分の余白を追加 */}
+      <section className="mb-8"> {/* ヘッダーの高さ分の余白を追加 */}
         <h2 className="text-xl font-semibold mb-4">カテゴリーから探す</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {['レディース', 'メンズ', 'キッズ', 'インテリア・住まい', 'エンタメ', '本・音楽・ゲーム'].map((category) => (
