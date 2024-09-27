@@ -12,7 +12,7 @@ export interface Product {
 export const productList: Product[] = [
   {
     id: 1,
-    name: 'あいうえお',
+    name: '車のパーツ',
     price: 2999,
     description: '家を整理していたら出てきたのでよかったら〜〜',
     imageUrl: '/placeholder.svg?height=100&width=100',

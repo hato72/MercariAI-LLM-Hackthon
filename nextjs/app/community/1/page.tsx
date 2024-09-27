@@ -136,10 +136,10 @@ export default function ChatInterface() {
         { id: 5, text: "いいですね！実は私も先月電気自動車を買ったんです。", sender: "佐藤" },
         {
             id: 6,
-            text: "素を整理していたら古い車のパーツが出てきたので、売ろうかなと思っています。",
+            text: "倉庫を整理していたら古い車のパーツが出てきたので、売ろうかなと思っています。",
             sender: "小林",
             isProduct: true,
-            productName: "あいうえお",
+            productName: "カーライト",
             productPrice: "¥2,999"
         },
         { id: 7, text: "それはいい考えですね。きっと欲しい人がいるはずです。", sender: "佐藤" },

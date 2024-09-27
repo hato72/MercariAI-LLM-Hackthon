@@ -18,12 +18,12 @@
 
 @media (min-width: 768px) {
     .customHeader {
-        margin-bottom: 24px;
-    }
-
-    .customFooter {
-        margin-top: 24px;
-    }
+            margin-bottom: 54px;
+        }
+    
+        .customFooter {
+            margin-top: 84px;
+        }
 
     .pageContainer {
         margin-bottom: 50px;
