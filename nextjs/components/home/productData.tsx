@@ -1,10 +1,9 @@
-
 export const productData = [
   {
     id: 1,
-    name: "レディース商品 1",
+    name: "女性用靴",
     price: 3000,
-    imageUrl: "/images/product1.jpg"
+    imageUrl: "/images/lady-shoe.jpg"
   },
   {
     id: 2,

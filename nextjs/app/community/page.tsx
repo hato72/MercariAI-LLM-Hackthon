@@ -1,10 +1,14 @@
 // pages/index.tsx
 import CommunityPage from '../../components/community/communityPage'  
+import Header from '../../components/header'
+import Footer from '../../components/footer'
 
 export default function Home() {
   return (
     <div>
-      <CommunityPage />
+        <Header />  
+        <CommunityPage />
+      <Footer />
     </div>
   )
 }

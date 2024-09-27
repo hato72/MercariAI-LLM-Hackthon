@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { CommunityTopic, recommendedCommunityData } from './communityData'  // データをインポート
 
@@ -8,6 +8,15 @@ export default function CommunityPage() {
   const router = useRouter()
   const [joinedCommunities, setJoinedCommunities] = useState<CommunityTopic[]>([])
   const [recommendedCommunities, setRecommendedCommunities] = useState<CommunityTopic[]>(recommendedCommunityData)
+
+  useEffect(() => {
+    // ページが表示された時にスクロールを無効化
+    document.body.style.overflow = 'hidden';
+    // クリーンアップで元に戻す
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   const joinCommunity = (community: CommunityTopic) => {
     setJoinedCommunities([...joinedCommunities, community])

@@ -189,68 +189,91 @@ export default function ChatInterface() {
     const handleLater = () => {
         setMessages(prev => [...prev, { id: Date.now(), text: "わかりました。後でお知らせします。", sender: 'システム' }]);
     };
-
     return (
-        <Card className="w-full min-w-md mx-auto h-[515px] flex flex-col bg-white">
-            <CardHeader className="flex flex-col space-y-4 p-4 bg-white border-b">
-                <div className="flex items-center">
-                    <ChevronLeft className="h-6 w-6 text-gray-600" />
-                    <h2 className="text-lg font-semibold ml-2 text-black">車について語ろう</h2>
+  <Card className="reset-all w-full min-w-md mx-auto flex flex-col bg-white h-screen">
+    {/* CardHeader を常に上部に固定し、余白を調整 */}
+        <CardHeader className="flex flex-col p-4 bg-white border-b sticky top-0 z-10"> {/* 余白を削除 */}
+      <div className="flex items-center">
+        <ChevronLeft className="h-6 w-6 text-gray-600" />
+        <h2 className="text-lg font-semibold ml-2 text-black">車について語ろう</h2>
+      </div>
+      <div className="flex space-x-2 overflow-x-auto mt-2">
+        {[...Array(8)].map((_, i) => (
+          <Avatar key={i} className="w-10 h-10 border-2 border-white">
+            <AvatarFallback className="bg-gray-200 text-gray-600">
+              {String.fromCharCode(65+ i)}
+            </AvatarFallback>
+          </Avatar>
+        ))}
+      </div>
+    </CardHeader>
+
+    {/* CardContent のみスクロール可能で、フォームに被らないように padding-bottom を追加し、ヘッダーとの間の余白を調整 */}
+    <CardContent className="flex-1 overflow-y-auto p-4 bg-gray-100" style={{ paddingBottom: '65px', paddingTop: '5px' }}> {/* paddingTopで余白を調整 */}
+      <div className="space-y-3">
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`flex ${message.sender === '自分' ? 'justify-end' : 'justify-start'}`}
+          >
+            <div
+              className={`max-w-[70%] ${
+                message.sender === '自分'
+                  ? 'bg-blue-100'
+                  : message.sender === 'システム'
+                  ? 'bg-yellow-100'
+                  : 'bg-white'
+              } rounded-lg p-2 shadow`}
+            >
+              <p className="text-xs mb-1 text-gray-500">{message.sender}</p>
+              <p className="text-black">{message.text}</p>
+              {message.isProduct && (
+                <div className="mt-2 bg-white rounded p-2 border border-gray-200">
+                  <p className="font-bold text-black">{message.productName}</p>
+                  <p className="text-gray-600">{message.productPrice}</p>
                 </div>
-                <div className="flex space-x-2 overflow-x-auto">
-                    {[...Array(8)].map((_, i) => (
-                        <Avatar key={i} className="w-10 h-10 border-2 border-white">
-                            <AvatarFallback className="bg-gray-200 text-gray-600">{String.fromCharCode(65 + i)}</AvatarFallback>
-                        </Avatar>
-                    ))}
+              )}
+              {message.isListingPrompt && (
+                <div className="mt-2 flex justify-center space-x-2">
+                  <Button
+                    onClick={handleList}
+                    className="bg-red-500 hover:bg-red-600 text-white text-sm"
+                  >
+                    出品する
+                  </Button>
+                  <Button onClick={handleLater} variant="outline" className="text-sm">
+                    あとで
+                  </Button>
                 </div>
-            </CardHeader>
-            <CardContent className="flex-1 overflow-y-auto p-4 bg-gray-100">
-                <div className="space-y-4">
-                    {messages.map((message) => (
-                        <div key={message.id} className={`flex ${message.sender === '自分' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-[70%] ${message.sender === '自分' ? 'bg-blue-100' : message.sender === 'システム' ? 'bg-yellow-100' : 'bg-white'} rounded-lg p-2 shadow`}>
-                                <p className="text-xs mb-1 text-gray-500">{message.sender}</p>
-                                <p className="text-black">{message.text}</p>
-                                {message.isProduct && (
-                                    <div className="mt-2 bg-white rounded p-2 border border-gray-200">
-                                        <p className="font-bold text-black">{message.productName}</p>
-                                        <p className="text-gray-600">{message.productPrice}</p>
-                                    </div>
-                                )}
-                                {message.isListingPrompt && (
-                                    <div className="mt-2 flex justify-center space-x-2">
-                                        <Button onClick={handleList} className="bg-red-500 hover:bg-red-600 text-white text-sm">
-                                            出品する
-                                        </Button>
-                                        <Button onClick={handleLater} variant="outline" className="text-sm">
-                                            あとで
-                                        </Button>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                    <div ref={messagesEndRef} />
-                </div>
-            </CardContent>
-            <div className="p-4 border-t bg-white">
-                <div className="flex items-center space-x-2">
-                    <Button size="icon" variant="ghost" className="text-gray-400">
-                        <Camera className="h-6 w-6" />
-                    </Button>
-                    <Input
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        placeholder="コメントする"
-                        className="flex-1 border-gray-300"
-                    />
-                    <Button size="icon" onClick={handleSend} className="bg-gray-200 text-gray-600">
-                        <Send className="h-4 w-4" />
-                    </Button>
-                </div>
+              )}
             </div>
-        </Card>
-    );
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+    </CardContent>
+
+    {/* 入力フォームを常に下部に固定 */}
+    <div className="p-4 border-t bg-white fixed bottom-0 left-0 w-full z-10">
+      <div className="flex items-center space-x-2">
+        <Button size="icon" variant="ghost" className="text-gray-400">
+          <Camera className="h-6 w-6" />
+        </Button>
+        <Input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="コメントする"
+          className="flex-1 border-gray-300"
+        />
+        <Button size="icon" onClick={handleSend} className="bg-gray-200 text-gray-600">
+          <Send className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  </Card>
+);
+
+
+
 }
 
